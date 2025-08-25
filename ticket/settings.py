@@ -25,10 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'booking',
-    'tailwind',
-    'theme',
-    'django_browser_reload',
-    'accounts',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -110,8 +106,7 @@ SESSION_COOKIE_AGE = 3600  # 1 hour
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 
-# Custom user model
-AUTH_USER_MODEL = 'accounts.Account'
+
 
 # Email config (from .env)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
