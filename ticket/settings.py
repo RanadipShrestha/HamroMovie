@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'booking',
+    'taulwind',
+    'accounts'    
 ]
 
 TAILWIND_APP_NAME = 'theme'
