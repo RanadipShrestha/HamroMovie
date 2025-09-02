@@ -1,6 +1,6 @@
 from django.db import models
+from accounts.models import Account
 from django.utils.text import slugify
-
 
 # Create your models here.
 
@@ -30,3 +30,16 @@ class Show(models.Model):
         if not self.slug:
             self.slug=slugify(self.name)
         super().save(*args,**kwargs)
+
+
+class Seat(models.Model):
+    seat_number = models.IntegerField()
+    is_booked = models.BooleanField(default=False)
+    row = models.CharField(max_length=2)
+    section = models.CharField(max_length=50)
+    hall = models.ForeignKey(Hall,on_delete=models.CASCADE)
+    show = models.ForeignKey(Show,on_delete=models.CASCADE,related_name="seats",null=True)
+    price = models.DecimalField(max_digits=10,decimal_places=2,default=300.00)
+    user = models.ForeignKey(Account,on_delete=models.SET_NULL,null=True,blank=True)
+    def __str__(self):
+        return f"{self.row}-{self.seat_number}"
