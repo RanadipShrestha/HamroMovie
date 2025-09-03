@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seats - {{ show.movie_name }}</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        .seat {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .available {
+            background-color: lightgreen;
+        }
+        .booked {
+            background-color: lightgray;
+        }
+        .selected {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Select Seats for: {{ show.movie_name }}</h1>
+<p><strong>Show Time:</strong> {{ show.start_time }} - {{ show.end_time }}</p>
+
+<form method="POST" action="{% url 'book_seats' %}">
+    {% csrf_token %}
+    
+    <div id="seats">
+        {% for seat in seats %}
+            <input type="checkbox" name="selected_seats" value="{{ seat.seat_number }}" 
+                class="seat {% if seat.is_booked %}booked{% else %}available{% endif %}" 
+                {% if seat.is_booked %}disabled{% endif %}>
+            <label>{{ seat.seat_number }}</label>
+        {% endfor %}
+    </div>
+
+    <br>
+    <button type="submit">Book Selected Seats</button>
+</form>
+
+</body>
+</html>

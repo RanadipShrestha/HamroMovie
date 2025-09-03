@@ -17,7 +17,51 @@ from django.http import HttpResponse
 from django.utils.encoding import force_str
 import requests
 
-# Create your views here.
+
+
+
+from urllib.parse import urlparse, parse_qs
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
+from urllib.parse import urlparse, parse_qs
+
+def login(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+        remember_me = request.POST.get('remember_me')  # Get the 'remember_me' value from the form
+
+        # Authenticate the user
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            # Log the user in
+            auth_login(request, user)
+            messages.success(request, "You are now logged in")
+
+            # Handle 'Remember Me'
+            if remember_me:  # If 'Remember Me' is checked
+                request.session.set_expiry(604800)  # Session expires in 7 days (604800 seconds)
+            else:
+                request.session.set_expiry(0)  # Session expires when the browser is closed (default behavior)
+
+            # Get the next parameter (redirect the user after login)
+            next_page = request.GET.get('next','/show/naruto/') or request.POST.get('next')
+            if next_page:
+                return redirect(next_page)  # Redirect to the page user was originally trying to access
+
+            # Fallback redirect if no 'next' parameter is found (redirect to dashboard or homepage)
+            return redirect('home')
+
+        else:
+            # If the user authentication fails
+            messages.error(request, 'Invalid login credentials')
+            return redirect('login')  # Redirect back to login page for retry
+
+    return render(request, 'login.html')  # Render the login page if the method is GET
+
 
 def register(request):
     if request.method == 'POST':

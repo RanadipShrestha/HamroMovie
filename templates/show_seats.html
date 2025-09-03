@@ -1,0 +1,57 @@
+{% load static tailwind_tags %}
+{% load static %}
+{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seats - {{ show.movie_name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+{% tailwind_css %}
+<body class="bg-gray-50 font-sans">
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Select Seats for: {{ show.name }}</h1>
+    <p class="text-xl text-center text-gray-600 mb-6"><strong>Show Time:</strong> {{ show.start_time }} - {{ show.end_time }}</p>
+
+    <form method="POST" action="{% url 'book_seats' %}" class="space-y-4">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-4 gap-4 justify-center">
+            {% for seat in seats %}
+                <div class="flex justify-center">
+                    <label class="relative cursor-pointer">
+                        <!-- Checkbox input -->
+                        <input type="checkbox" name="selected_seats" value="{{ seat.seat_number }}" id="{{seat.seat_number}}" 
+                            class="hidden peer"
+                            {% if seat.is_booked %}disabled{% endif %}>
+                        
+                        <!-- Seat image with dynamic classes -->
+                        <img src="{% if seat.is_booked %}{% static 'seat-booked.png' %}{% else %}{% static 'seat-booked.png' %}{% endif %}" 
+                            alt="Seat {{ seat.seat_number }}" 
+                            class="w-12 h-12 transition-all duration-200 ease-in-out
+                            peer-checked:bg-green-500 peer-checked:opacity-80
+                            {% if seat.is_booked %}bg-gray-500 opacity-50{% else %} hover:opacity-70{% endif %}">
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="py-24 bg-black h-64">
+            <h1 class="text-white text-center font-bold text-xl">Screen</h1>
+        </div>
+        <!-- Submit button -->
+        <div class="flex justify-center mt-6">
+            <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition">
+                Book Selected Seats
+            </button>
+        </div>
+    </form>
+    
+    
+</div>
+
+</body>
+</html>
