@@ -97,3 +97,10 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, "register.html", {'form': form})
+
+
+@login_required(login_url="login")
+def logout(request):
+    auth.logout(request)
+    messages.success(request,'You have been logged out')
+    return redirect('home')
