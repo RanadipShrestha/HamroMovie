@@ -1,0 +1,49 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success - Invoice</title>
+    {% tailwind_css %}
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8 m-10">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4 text-center">Payment Successful</h2>
+
+            <div class="border-t-2 border-gray-300 pt-4">
+                <h3 class="text-xl font-semibold">Invoice</h3>
+                <div class="mt-4 space-y-4">
+                    <div class="flex justify-between">
+                        <span class="font-medium">Customer Name:</span>
+                        <span>{{ invoice.customer_name }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Seats Booked:</span>
+                        <span>{{ invoice.seats|join:', ' }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Total Price:</span>
+                        <span>${{ invoice.total_price }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Payment Status:</span>
+                        <span class="text-green-500">Successful</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Payment Date:</span>
+                        <span>{{ invoice.payment_date }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="{% url 'reservation' %}" class="text-blue-600 hover:underline">See Your Ticket</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
