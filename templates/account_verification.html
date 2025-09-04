@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Account Verification 🎬</title>
+    <style>
+        body {
+            background-color: #1a202c; /* bg-gray-900 */
+            color: #fff; /* text-white */
+            text-align: center;
+            padding: 24px; /* p-6 */
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #2d3748; /* bg-gray-800 */
+            padding: 24px; /* p-6 */
+            border-radius: 8px; /* rounded-lg */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+        }
+        .btn {
+            background-color: #e53e3e; /* bg-red-600 */
+            color: white;
+            font-size: 16px; /* text-lg */
+            font-weight: bold;
+            padding: 12px 24px; /* py-3 px-6 */
+            border-radius: 8px;
+            margin-top: 16px; /* mt-4 */
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #c53030; /* hover:bg-red-700 */
+        }
+        .footer {
+            margin-top: 24px; /* mt-6 */
+            font-size: 14px; /* text-sm */
+            color: #cbd5e0; /* text-gray-500 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.imgur.com/3WUG7F9.png" alt="Movie Logo" style="width: 128px; margin-bottom: 16px;" /> <!-- Replace with your logo -->
+        <h2 style="font-size: 24px; font-weight: bold;">Welcome to MovieVerse!</h2>
+        <p style="margin-top: 16px; color: #cbd5e0;">Hi {{ user.first_name }},</p>
+        <p style="color: #cbd5e0;">You're just one step away from unlocking the world of movies.</p>
+        <p style="color: #cbd5e0;">Click the button below to verify your account.</p>
+        
+        <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="btn">
+            Verify Your Account
+        </a>
+        
+        <p style="margin-top: 16px; color: #edf2f7;">If you didn't request this, simply ignore this email.</p>
+        
+        <div class="footer">
+            &copy; 2025 MovieVerse. All Rights Reserved.
+        </div>
+    </div>
+</body>
+</html>
