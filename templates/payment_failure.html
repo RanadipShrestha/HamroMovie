@@ -1,0 +1,23 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failure</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+{% tailwind_css %}
+<body class="bg-red-100 text-gray-700">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+            <h1 class="text-3xl font-semibold text-red-600 mb-4">Payment Failed</h1>
+            <p class="text-lg mb-6">Unfortunately, your payment could not be processed. Please try again later or contact support.</p>
+            
+            <!-- Optionally, add a retry button or a link to home -->
+            <a href="{% url 'home' %}" class="text-blue-600">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
