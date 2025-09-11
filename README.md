@@ -37,7 +37,7 @@ Users can **register, log in, select movies, choose seats, and make payments** f
 
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, JavaScript (with Django templates)
-- **Database**: SQLite (default, can switch to MySQL/PostgreSQL)
+- **Database**: SQLite (default, can switch to PostgreSQL)
 - **Authentication**: Django's built-in auth system
 
 ---
