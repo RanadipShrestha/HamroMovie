@@ -1,39 +1,39 @@
-# 🎬 Movie Ticket Booking System
+#  Movie Ticket Booking System
 
 This is a simple **Movie Ticket Booking System** built with Django.  
 Users can **register, log in, select movies, choose seats, and make payments** for their tickets.
 
 ---
 
-## ✨ Features
+##  Features
 
-- 🔐 **User Authentication**
+-  **User Authentication**
 
   - Register new users
   - Login / Logout functionality
   - Secure password storage
 
-- 🎥 **Movie Selection**
+-  **Movie Selection**
 
   - View available movies
   - Choose a movie to book
 
-- 💺 **Seat Booking**
+-  **Seat Booking**
 
   - Select available seats
   - Prevent double booking of the same seat
 
-- 💳 **Payment**
+-  **Payment**
 
   - Pay ticket price (basic simulation or integration with payment gateway)
   - View booking confirmation
 
-- 📜 **Booking History**
+-  **Booking History**
   - Users can view their past bookings
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, JavaScript (with Django templates)
@@ -42,11 +42,3 @@ Users can **register, log in, select movies, choose seats, and make payments** f
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/RanadipShrestha/HamroMovie.git
-cd HamroMovie
-```
